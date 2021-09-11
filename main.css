@@ -1,0 +1,17 @@
+
+
+body {
+    background-image: 
+    linear-gradient(
+        135deg, #FFF5C3 10%, #9452A5 100%
+     ),
+    url(./assets/imges/pastel-breen-bg.jpeg); 
+    background-size: 100%;
+    background-attachment: fixed;
+    font-weight: bold;
+ }
+
+ #logo {
+    font-family: 'Balsamiq Sans', cursive;
+
+ }
