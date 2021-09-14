@@ -5,7 +5,7 @@
 ## Overview
 
 Closrr lets you create and view volunteer opportunities.
-Check out the JS backend for this app [here](https://github.com/tbenis/volunteer-locations-api)
+Check out the Rails backend for this app [here](https://github.com/tbenis/volunteer-locations-api)
 
 ## How to run this project
 1. Clone the Repository <small> [in terminal]</small>
