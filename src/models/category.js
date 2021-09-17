@@ -19,6 +19,10 @@ class Category {
     return this.findByName(category.name) || new Category(category);
   }
 
+  static findByOpportunityTitle(text){
+    return Opportunity.all.filter((opportunity) => (this.id === opportunity.category_id) && (opportunity.title.toLowerCase().includes(text)));
+  }
+
   getOpportunities(){
       return Opportunity.all.filter(opportunity => this.id === opportunity.category_id)
   } 
@@ -41,7 +45,6 @@ class Category {
   
 
   render = () => {
-
     const h4 = document.createElement("h4");
     h4.id = `category-container-${this.id}`
     const a = document.createElement("a");
@@ -64,11 +67,26 @@ class Category {
     // let hpCharacters = [];
     console.log("Hey from here");
     searchBar.addEventListener('keyup', (e) => {
-        const searchString = e.target.value.toLowerCase();
+        const text = e.target.value.toLowerCase();
     
-        const filteredCharacters = Opportunity.findByTitle(searchString); 
+        // const filteredOpportunities = Category.findByOpportunityTitle(searchString); 
+        const filteredOpportunities = Opportunity.all.filter((opportunity) => (this.id === opportunity.category_id) && (opportunity.title.toLowerCase().includes(text)));
 
-        // this.renderOpportunities(e);
+        const children = Array.from(e.target.parentNode.children);
+        const lis = children.slice(4);
+        // debugger
+        
+        lis.forEach(li => li.remove());
+        // const container = document.querySelector(`#category-container-${this.id}`);
+        // container.appendChild(br()); container.appendChild(br());
+        // container.appendChild(searchBox(this));
+
+        console.log(filteredOpportunities)
+        filteredOpportunities.forEach((element) => {
+         
+          element.render();
+
+        });
     });
 
     
