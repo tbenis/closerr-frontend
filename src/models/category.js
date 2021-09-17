@@ -38,30 +38,66 @@ class Category {
     }
   };
 
+  
+
   render = () => {
 
     const h4 = document.createElement("h4");
+    h4.id = `category-container-${this.id}`
     const a = document.createElement("a");
+
     a.id = `category-${this.id}`;
     a.innerText = this.name;
     a.href = "#";
-    // debugger
+
     a.addEventListener("click", this.renderOpportunities);
     h4.appendChild(a);
-    h4.appendChild(br());
+
+    
     ul().appendChild(h4);
+
   }
 
+  useSeachBox(){
+    // const charactersList = document.getElementById('charactersList');
+    const searchBar = document.getElementById(`opportunity-box-${this.id}`);
+    // let hpCharacters = [];
+    console.log("Hey from here");
+    searchBar.addEventListener('keyup', (e) => {
+        const searchString = e.target.value.toLowerCase();
+    
+        const filteredCharacters = Opportunity.findByTitle(searchString); 
+
+        // this.renderOpportunities(e);
+    });
+
+    
+  };
+
 renderOpportunities = (e) => {
+        // this.renderSeachBox();
         const nextLiSibling = e.target.nextSibling;
+
         if (nextLiSibling) {
           const children = Array.from(e.target.parentNode.children);
           const lis = children.slice(1);
           lis.forEach(li => li.remove());
         } else {
-        //   debugger
-          this.getOpportunities().forEach((element) => element.render());
+          const container = document.querySelector(`#category-container-${this.id}`);
+          container.appendChild(br()); container.appendChild(br());
+          container.appendChild(searchBox(this));
+          this.useSeachBox()
+         this.getOpportunities().forEach((element) => {
+            // debugger
+            element.render();
+            // debugger
+            // element.appendChild(searchBox());
+          });
+          
         }
+        // const cat = document.querySelector(`category-${this.id}`);
+        // h4.prepend(searchBox);
+        
       };
   
-}
+    }

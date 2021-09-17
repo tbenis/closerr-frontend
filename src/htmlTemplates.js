@@ -54,3 +54,5 @@ const opportunityDisplay = ({title, time, hours, location, companyName, descript
     <button class="delete-listing btn btn-danger" data-id="${id}">Delete</button>
     `
 }
+
+

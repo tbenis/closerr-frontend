@@ -16,7 +16,11 @@ class Opportunity {
   static findById(id) {
     return this.all.find((opportunity) => opportunity.id === id);
   }
+  static findByTitle(text){
+    return this.all.filter((opportunity) => opportunity.title.toLowerCase().includes(text));
+  }
 
+  
   static createTheOpportunity(opportunity) {
     return new Opportunity(opportunity);
   }
@@ -36,16 +40,19 @@ class Opportunity {
     } else {
       let cat = document.querySelector(`#category-${this.category_id}`);
       const li = document.createElement("li");
+      // const liDiv =  document.querySelector(`opportunity-box-${cat.id}`);
       cat.dataset.category_id = this.category_id;
       li.innerHTML = opportunityDisplay(this);
 
         cat.parentNode.appendChild(li);
+        // liDiv.appendChild(li);
       document
         .querySelector(`button.delete-listing[data-id='${this.id}']`)
         .addEventListener("click", Api.handleDelete);
       document
         .querySelector(`button.edit-listing[data-id='${this.id}']`)
         .addEventListener("click", this.handleUpdate);
+
     }
   }
   static displayForm = () => {

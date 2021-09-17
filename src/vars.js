@@ -19,3 +19,14 @@ const opportunityHours = () => document.getElementById("opportunity-hours")
 const opportunityLocation = () => document.getElementById("opportunity-location")
 const opportunitySelectCategory = () => document.getElementById("category_id")
 
+const searchBox = (obj) => {
+    
+    const theBox = document.createElement("input");
+    theBox.id = `opportunity-box-${obj.id}`;
+
+    theBox.name = `search-category-${obj.name}`;
+    theBox.setAttribute("placeholder", `Seach the ${obj.name} category`);
+    return (theBox)
+};
+ //Adding text box
+
